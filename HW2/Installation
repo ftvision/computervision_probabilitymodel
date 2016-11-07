@@ -1,0 +1,60 @@
+# Install the sparseet
+
+1. Compile `libnrfopt.a`
+    - I had no problem, just run what the README said
+2. Compile sparsenet.m
+    - We need to setup `mex -setup` in Matlab, I have encountered several problems, see below
+
+
+## Find MacOS sdk version number
+
+error message: `xcodebuild: error: SDK "macosx10.7" cannot be located.`
+
+**solution**
+
+```
+xcrun --show-sdk-path
+```
+
+Here you can find what macosx version. I found out mine is maxcosx10.10
+
+## Setup Mex in Matlab
+
+error message: just does not run.
+
+**solution** [Reference](http://www.mathworks.com/matlabcentral/answers/103904-can-i-use-xcode-5-as-my-c-or-c-compiler-in-matlab-8-1-r2013a-or-matlab-8-2-r2013b)
+
+Open Matlab, type in
+
+```
+cd(matlabroot)
+cd bin
+edit mexopts.sh
+```
+Backup the `mexopts.sh` file in case you messed up.
+
+Replace all instances of 10.7 with 10.10(or your version, say 10.8); there are four of these in all (a fifth may be found in comments only)
+
+Save, and run 
+
+```
+mex -setup
+```
+
+choose to update your setup.
+
+## update the makefile
+
+error message: in README, it says "First modify the makefile definition for MEXT to be the proper suffix for the mex file for your machine (for SGI's it is mexsg)." WHAT DOES THAT MEAN?
+
+**solution** [Referece](http://stackoverflow.com/questions/17117698/compiling-c-program-into-matlab-format-mac-os-x)
+
+change the related filed in the makefile
+
+```
+MEX = /Applications/MATLAB_R2012a.app/bin/mex
+MEXT = mexmaci64
+```
+
+## Now, run `make` !
+
