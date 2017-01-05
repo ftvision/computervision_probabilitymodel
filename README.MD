@@ -26,3 +26,13 @@ Topics:
 > Gibbs distribution, Gibbs Sampling, Mean Field Theory, and their relationship
 
 All information is here.
+
+## Homework 4
+
+Topics:
+
+> Perceptron, Multi-layer Perceptron, Deep Network
+
+The Trained model is deleted, but it can be reproduced by the `lua` code. My code did not do a good job in translational invariance and I don't really know why it is the case. There could be a bug I guess.
+
+For the data, unzip the `CNN_final.zip`
